@@ -1,5 +1,5 @@
 import css from "./MovieCard.module.css";
-import { MdOutlineStarPurple500 } from "react-icons/md";
+import { BsFileImage } from "react-icons/bs";
 
 const MovieCard = ({
   posterUrl,
@@ -8,6 +8,7 @@ const MovieCard = ({
   movieGenres,
   movieRating,
   movieId,
+  imageUrl,
   genresList,
   onCardClick,
 }) => {
@@ -18,10 +19,17 @@ const MovieCard = ({
 
   return (
     <div className={css.movieCard} onClick={onCardClick} data-id={movieId}>
-      <img src={posterUrl} alt={movieTitle} className={css.moviePoster} />
-
+      {imageUrl === null ? (
+        <BsFileImage className={css.moviePoster} />
+      ) : (
+        <img src={posterUrl} alt={movieTitle} className={css.moviePoster} />
+      )}
       <div className={css.movieText}>
-        <h3 className={css.movieTitle}>{movieTitle}</h3>
+        <h3 className={css.movieTitle}>
+          {movieTitle.length <= 23
+            ? movieTitle
+            : movieTitle.slice(0, 23) + "..."}
+        </h3>
 
         <div className={css.movieDescription}>
           <p className={css.movieInfo}>Rating : {movieRating} / 10</p>

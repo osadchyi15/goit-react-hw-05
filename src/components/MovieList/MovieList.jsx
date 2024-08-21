@@ -2,10 +2,10 @@ import MovieCard from "../MovieCard/MovieCard";
 import { Link } from "react-router-dom";
 import css from "./MovieList.module.css";
 
-const MovieList = ({ trendingMovies, genresList }) => {
+const MovieList = ({ results, genresList }) => {
   return (
     <ul className={css.moviesList}>
-      {trendingMovies.map((movie) => {
+      {results.map((movie) => {
         return (
           <Link
             to={`/movies/${movie.id}`}
@@ -20,6 +20,7 @@ const MovieList = ({ trendingMovies, genresList }) => {
               movieRating={movie.vote_average.toFixed(2)}
               movieId={movie.id}
               genresList={genresList}
+              imageUrl={movie.poster_path}
             />
           </Link>
         );

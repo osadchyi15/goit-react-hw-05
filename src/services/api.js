@@ -11,7 +11,6 @@ axios.defaults.headers.common = {
 
 export const fetchTrendingMovies = async (page) => {
   const { data } = await axios.get(`trending/movie/day?page=${page}`);
-  console.log(data);
   return data;
 };
 
@@ -37,6 +36,13 @@ export const fetchMovieActors = async (movieId) => {
 export const fetchMovieReviews = async (movieId, page) => {
   const { data } = await axios.get(
     `https://api.themoviedb.org/3/movie/${movieId}/reviews?page=${page}`
+  );
+  return data;
+};
+
+export const searchMovies = async (query, page) => {
+  const { data } = await axios.get(
+    `https://api.themoviedb.org/3/search/movie?query=${query}&page=${page}`
   );
   return data;
 };

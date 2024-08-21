@@ -28,34 +28,42 @@ const MovieCast = () => {
   }, [movieId]);
 
   return (
-    <div className={css.castInformation}>
-      {isLoading && <Loader />}
-      {error !== null && <p>{error}</p>}
-      <ul className={css.actorsList}>
-        {castDetails &&
-          castDetails.map((actor) => (
-            <li key={actor.id} className={css.actorsItem}>
-              {actor.profile_path ? (
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
-                  alt={actor.name}
-                  className={css.foto}
-                />
-              ) : (
-                <FaUserSecret className={css.foto} />
-              )}
-              <div className={css.dscrActor}>
-                <p className={css.actor}>Actor </p>
-                <p>{actor.name}</p>
-              </div>
-              <div className={css.dscrCharacter}>
-                <p className={css.character}>Character</p>
-                <p>{actor.character}</p>
-              </div>
-            </li>
-          ))}
-      </ul>
-    </div>
+    <>
+      <div className={css.castInformation}>
+        {isLoading && <Loader />}
+        {error !== null && <p>{error}</p>}
+        <ul className={css.actorsList}>
+          {castDetails &&
+            castDetails.map((actor) => (
+              <li key={actor.id} className={css.actorsItem}>
+                {actor.profile_path ? (
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
+                    alt={actor.name}
+                    className={css.foto}
+                  />
+                ) : (
+                  <FaUserSecret className={css.foto} />
+                )}
+                <div className={css.dscrActor}>
+                  <p className={css.actor}>Actor </p>
+                  <p>{actor.name}</p>
+                </div>
+                <div className={css.dscrCharacter}>
+                  <p className={css.character}>Character</p>
+                  <p>{actor.character}</p>
+                </div>
+              </li>
+            ))}
+        </ul>
+      </div>
+      {castDetails === null ||
+        (castDetails.length === 0 && (
+          <p className={css.sorry}>
+            Sorry. We don't have any information about cast of this movie.
+          </p>
+        ))}
+    </>
   );
 };
 

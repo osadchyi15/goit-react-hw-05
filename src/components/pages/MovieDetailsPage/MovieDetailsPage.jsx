@@ -5,6 +5,7 @@ import clsx from "clsx";
 
 import { fetchMovieDetails, getGenres } from "../../../services/api";
 
+import { BsFileImage } from "react-icons/bs";
 import ToTopButton from "../../ToTopButton/ToTopButton";
 import Loader from "../../Loader/Loader";
 
@@ -55,14 +56,26 @@ const MovieDetailsPage = () => {
           {isLoading && <Loader />}
           {error !== null && <p>{error}</p>}
           <div className={css.movieDetails}>
-            <img
-              className={css.moviePoster}
-              src={"https://image.tmdb.org/t/p/w500" + movieDetails.poster_path}
-              alt={movieDetails.title}
-            />
+            <div className={css.posterWrapper}>
+              {movieDetails.poster_path === null ? (
+                <BsFileImage className={css.moviePoster} />
+              ) : (
+                <img
+                  className={css.moviePoster}
+                  src={
+                    "https://image.tmdb.org/t/p/w500" + movieDetails.poster_path
+                  }
+                  alt={movieDetails.title}
+                />
+              )}
+            </div>
+
             <div className={css.movieDescr}>
               <p className={css.movieTitle}>
-                {movieDetails.title} ({movieDetails.release_date.slice(0, 4)})
+                {movieDetails.title}{" "}
+                {movieDetails.release_date === null
+                  ? ""
+                  : movieDetails.release_date.slice(0, 4)}
               </p>
 
               <p className={css.movieDescrText}>

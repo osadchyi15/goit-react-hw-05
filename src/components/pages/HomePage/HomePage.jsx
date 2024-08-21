@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { createContext } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
 import { fetchTrendingMovies, getGenres } from "../../../services/api";
@@ -8,7 +7,6 @@ import MovieList from "../../MovieList/MovieList";
 import Loader from "../../Loader/Loader";
 import LoadMoreBtn from "../../LoadMoreBtn/LoadMoreBtn";
 import ToTopButton from "../../ToTopButton/ToTopButton";
-import Navigation from "../../Navigation/Navigation";
 
 import css from "./HomePage.module.css";
 
@@ -45,7 +43,6 @@ const HomePage = () => {
         );
 
         setTotalPages(totalPages);
-
         setIsBtnVisible(true);
 
         if (page === 1) {
@@ -93,7 +90,7 @@ const HomePage = () => {
         {isLoading && <Loader />}
         {error !== null && <p>{error}</p>}
         {Array.isArray(results) && (
-          <MovieList genresList={genresList} trendingMovies={results} />
+          <MovieList genresList={genresList} results={results} />
         )}
         {results && isBtnVisible && (
           <LoadMoreBtn onClickMoreBtn={onClickMoreBtn} isLoading={isLoading} />
