@@ -51,7 +51,8 @@ const MoviesPage = () => {
 
         if (results.length === 0) {
           setIsBtnVisible(false);
-          return toast.error("There are no movies matching your search.");
+          query.trim() &&
+            toast.error("There are no movies matching your search.");
         } else {
           setIsBtnVisible(true);
         }
