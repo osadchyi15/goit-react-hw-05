@@ -1,0 +1,44 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 8px 85px;
+  align-content: center;
+  width: 100%;
+  border-bottom: 1px solid #ef02022d;
+  box-shadow: 5px 5px 5px #f854546f;
+  background-color: #494747;
+}
+.navigation {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  margin: 0 auto;
+}
+
+.link {
+  display: inline-flex;
+  width: 70px;
+  justify-content: center;
+  padding: 4px;
+  font-size: 18px;
+  border: 1px solid black;
+  text-decoration: none;
+  border-radius: 8px;
+  background-color: #fff;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  transition: all 0.3s;
+}
+
+.link:hover {
+  color: #2c2a2a;
+  transform: scale(1.05);
+  font-weight: 500;
+}
+
+.link.active {
+  background-color: black;
+  color: #fff;
+  border: 1px solid #fff;
+}

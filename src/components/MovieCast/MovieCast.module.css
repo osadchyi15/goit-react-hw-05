@@ -1,0 +1,36 @@
+.castInformation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.foto {
+  width: 120px;
+  height: 180px;
+  border: 1px solid #fafafa;
+  border-radius: 8px;
+}
+
+.actorsList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.actorsItem {
+  margin-bottom: 15px;
+  width: calc((100% - 60px) / 5);
+}
+
+.dscrActor {
+  margin-bottom: 20px;
+}
+
+.actor {
+  font-weight: 700;
+}
+
+.character {
+  font-weight: 700;
+}

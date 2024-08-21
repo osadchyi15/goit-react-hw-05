@@ -1,0 +1,14 @@
+.upButton {
+  position: fixed;
+  bottom: 20px;
+  right: 5px;
+  font-size: 12px;
+
+  transform: rotate(-90deg);
+}
+
+.upButton:hover {
+  color: #fff;
+  background-color: #37383d;
+  border: 2px solid #fff;
+}

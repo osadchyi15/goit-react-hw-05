@@ -1,0 +1,13 @@
+.homePage {
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  gap: 8px;
+}
+
+.homeTitle {
+  font-size: 36px;
+  color: #ada5a5;
+  -webkit-text-stroke: 1px #fafafa;
+  margin-bottom: 20px;
+}

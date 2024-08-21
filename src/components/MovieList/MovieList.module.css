@@ -1,0 +1,32 @@
+.moviesList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.moviesListItem {
+  border-radius: 12px;
+  border: 1px solid #fafafa;
+  width: calc((100% - 56px) / 5);
+  background-color: rgb(60, 60, 59);
+  background-image: linear-gradient(
+    to right top,
+    #635d60,
+    #6c6069,
+    #716475,
+    #736983,
+    #6f6f92,
+    #5f6d91,
+    #4d6c8f,
+    #396a8b,
+    #1f5e75,
+    #09515e,
+    #014448,
+    #033633
+  );
+  transition: all 0.5s;
+}
+
+.moviesListItem:hover {
+  transform: scale(1.03);
+}

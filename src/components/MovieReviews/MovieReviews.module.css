@@ -1,0 +1,24 @@
+.reviewList {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: center;
+  text-align: left;
+}
+
+.reviewItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reviewAutor {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.theEnd,
+.sorry {
+  font-size: 20px;
+  font-weight: 700;
+}
