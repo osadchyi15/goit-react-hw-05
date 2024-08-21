@@ -10,12 +10,10 @@ const MovieReviews = () => {
   const { movieId } = useParams();
   const [results, setResults] = useState(null);
   const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(Number);
+  const [totalPages, setTotalPages] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [isBtnVisible, setIsBtnVisible] = useState(false);
-
-  console.log(page, totalPages);
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -23,11 +21,17 @@ const MovieReviews = () => {
         setIsLoading(true);
         setIsBtnVisible(false);
 
-        const { results, page, total_pages } = await fetchMovieReviews(movieId);
+        const {
+          results,
+          page,
+          total_pages: totalPages,
+        } = await fetchMovieReviews(movieId);
         setResults(results);
         setPage(page);
-        setTotalPages(total_pages);
         setIsBtnVisible(true);
+        setTotalPages(totalPages);
+
+        console.log(page, totalPages);
 
         if (page === 1) {
           setResults(results);
@@ -36,8 +40,6 @@ const MovieReviews = () => {
         }
 
         setIsBtnVisible(page < totalPages);
-
-        console.log(page, totalPages);
       } catch (err) {
         setError(error.message);
       } finally {
@@ -62,8 +64,12 @@ const MovieReviews = () => {
           {results.map((review) => {
             return (
               <li key={review.id} className={css.reviewItem}>
-                <p className={css.reviewAutor}>Author: {review.author}</p>
-                <p className={css.reviewText}>{review.content}</p>
+                <p className={css.reviewAuthor}>Author: {review.author}</p>
+                <div className={css.textContainer}>
+                  <p className={(css.reviewText, css.textContent)}>
+                    {review.content}
+                  </p>
+                </div>
               </li>
             );
           })}

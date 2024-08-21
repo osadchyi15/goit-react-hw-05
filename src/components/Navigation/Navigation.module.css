@@ -8,6 +8,7 @@
   border-bottom: 1px solid #ef02022d;
   box-shadow: 5px 5px 5px #f854546f;
   background-color: #494747;
+  z-index: 5;
 }
 .navigation {
   display: flex;
