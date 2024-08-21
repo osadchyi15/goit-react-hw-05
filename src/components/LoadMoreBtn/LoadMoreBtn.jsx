@@ -1,6 +1,6 @@
 import css from "./LoadMoreBtn.module.css";
 
-export const LoadMoreBtn = ({ onClickMoreBtn, isLoading }) => {
+const LoadMoreBtn = ({ onClickMoreBtn, isLoading }) => {
   return (
     <div>
       <button type="button" onClick={onClickMoreBtn} disabled={isLoading}>
@@ -9,3 +9,5 @@ export const LoadMoreBtn = ({ onClickMoreBtn, isLoading }) => {
     </div>
   );
 };
+
+export default LoadMoreBtn;

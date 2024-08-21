@@ -7,7 +7,7 @@
 .moviesListItem {
   border-radius: 12px;
   border: 1px solid #fafafa;
-  width: calc((100% - 56px) / 5);
+  width: calc((100% - 60px) / 5);
   background-color: rgb(60, 60, 59);
   background-image: linear-gradient(
     to right top,

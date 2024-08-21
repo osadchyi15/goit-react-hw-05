@@ -6,7 +6,7 @@ import { fetchTrendingMovies, getGenres } from "../../../services/api";
 
 import MovieList from "../../MovieList/MovieList";
 import Loader from "../../Loader/Loader";
-import { LoadMoreBtn } from "../../LoadMoreBtn/LoadMoreBtn";
+import LoadMoreBtn from "../../LoadMoreBtn/LoadMoreBtn";
 import ToTopButton from "../../ToTopButton/ToTopButton";
 import Navigation from "../../Navigation/Navigation";
 

@@ -34,10 +34,9 @@ export const fetchMovieActors = async (movieId) => {
   return data;
 };
 
-export const fetchMovieReviews = async (movieId) => {
+export const fetchMovieReviews = async (movieId, page) => {
   const { data } = await axios.get(
-    `https://api.themoviedb.org/3/movie/${movieId}/reviews`
+    `https://api.themoviedb.org/3/movie/${movieId}/reviews?page=${page}`
   );
-  console.log(data);
   return data;
 };

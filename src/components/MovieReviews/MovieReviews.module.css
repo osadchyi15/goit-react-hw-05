@@ -22,3 +22,25 @@
   font-size: 20px;
   font-weight: 700;
 }
+
+.textContainer {
+  max-height: 100px; /* Ограничиваем высоту */
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: max-height 0.5s ease;
+}
+
+.textContainer.expanded {
+  max-height: none; /* Убираем ограничение по высоте при разворачивании */
+}
+
+.showMore {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(to top, white, transparent); /* Градиент */
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+}

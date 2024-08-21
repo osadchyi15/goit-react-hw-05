@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { fetchMovieReviews } from "../../services/api";
 import toast, { Toaster } from "react-hot-toast";
 import Loader from "../Loader/Loader";
-import { LoadMoreBtn } from "../LoadMoreBtn/LoadMoreBtn";
+import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 
 const MovieReviews = () => {
   const { movieId } = useParams();
@@ -21,17 +21,13 @@ const MovieReviews = () => {
         setIsLoading(true);
         setIsBtnVisible(false);
 
-        const {
-          results,
-          page,
-          total_pages: totalPages,
-        } = await fetchMovieReviews(movieId);
+        const { results, total_pages: totalPages } = await fetchMovieReviews(
+          movieId,
+          page
+        );
         setResults(results);
-        setPage(page);
         setIsBtnVisible(true);
         setTotalPages(totalPages);
-
-        console.log(page, totalPages);
 
         if (page === 1) {
           setResults(results);
@@ -41,7 +37,7 @@ const MovieReviews = () => {
 
         setIsBtnVisible(page < totalPages);
       } catch (err) {
-        setError(error.message);
+        setError(err.message);
       } finally {
         setIsLoading(false);
       }
@@ -61,9 +57,9 @@ const MovieReviews = () => {
 
       {results && (
         <ul className={css.reviewList}>
-          {results.map((review) => {
+          {results.map((review, index) => {
             return (
-              <li key={review.id} className={css.reviewItem}>
+              <li key={index} className={css.reviewItem}>
                 <p className={css.reviewAuthor}>Author: {review.author}</p>
                 <div className={css.textContainer}>
                   <p className={(css.reviewText, css.textContent)}>
