@@ -13,6 +13,8 @@
 }
 
 .searchInput {
+  padding-left: 10px;
+  padding-right: 10px;
   width: 300px;
   height: 30px;
   border-radius: 8px;
