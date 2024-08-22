@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { NavLink, Link, Outlet, useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import clsx from "clsx";
 
-import { fetchMovieDetails, getGenres } from "../../../services/api";
+import { fetchMovieDetails, getGenres } from "../../services/api";
 
 import { BsFileImage } from "react-icons/bs";
-import ToTopButton from "../../ToTopButton/ToTopButton";
-import Loader from "../../Loader/Loader";
+import ToTopButton from "../../components/ToTopButton/ToTopButton";
+import Loader from "../../components/Loader/Loader";
 
 import css from "./MovieDetailsPage.module.css";
 
@@ -17,6 +17,11 @@ const MovieDetailsPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [windowScroll, setWindowScroll] = useState(false);
   const [error, setError] = useState(null);
+  const location = useLocation();
+
+  const backLinkRef = useRef(location.state?.from ?? "/");
+
+  console.log(location);
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -50,6 +55,9 @@ const MovieDetailsPage = () => {
     <>
       {movieDetails !== null && (
         <div className={css.detailsPage}>
+          <Link to={backLinkRef.current} className={css.goBackBtn}>
+            &#8617; Go back
+          </Link>
           <h1 className={css.movieDetailsTitle}>
             About the movie "{movieDetails.title}"
           </h1>

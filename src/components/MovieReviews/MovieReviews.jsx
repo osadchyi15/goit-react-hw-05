@@ -57,9 +57,9 @@ const MovieReviews = () => {
 
       {results && (
         <ul className={css.reviewList}>
-          {results.map((review) => {
+          {results.map((review, index) => {
             return (
-              <li key={review.id} className={css.reviewItem}>
+              <li key={review.id + index} className={css.reviewItem}>
                 <p className={css.reviewAuthor}>Author: {review.author}</p>
                 <div className={css.textContainer}>
                   <p className={(css.reviewText, css.textContent)}>

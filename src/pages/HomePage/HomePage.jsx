@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
-import { fetchTrendingMovies, getGenres } from "../../../services/api";
+import { fetchTrendingMovies, getGenres } from "../../services/api";
 
-import MovieList from "../../MovieList/MovieList";
-import Loader from "../../Loader/Loader";
-import LoadMoreBtn from "../../LoadMoreBtn/LoadMoreBtn";
-import ToTopButton from "../../ToTopButton/ToTopButton";
+import MovieList from "../../components/MovieList/MovieList";
+import Loader from "../../components/Loader/Loader";
+import LoadMoreBtn from "../../components/LoadMoreBtn/LoadMoreBtn";
+import ToTopButton from "../../components/ToTopButton/ToTopButton";
 
 import css from "./HomePage.module.css";
 

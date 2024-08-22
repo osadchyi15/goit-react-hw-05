@@ -1,28 +1,35 @@
-import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
+import { lazy, Suspense } from "react";
 
-import HomePage from "./components/pages/HomePage/HomePage";
-import MoviesPage from "./components/pages/MoviesPage/MoviesPage";
-import Navigation from "./components/Navigation/Navigation";
-import MovieDetailsPage from "./components/pages/MovieDetailsPage/MovieDetailsPage";
-import MovieCast from "./components/MovieCast/MovieCast";
-import MovieReviews from "./components/MovieReviews/MovieReviews";
+const HomePage = lazy(() => import("./pages/HomePage/HomePage.jsx"));
+const MoviesPage = lazy(() => import("./pages/MoviesPage/MoviesPage.jsx"));
+const Navigation = lazy(() => import("./components/Navigation/Navigation.jsx"));
+const MovieDetailsPage = lazy(() =>
+  import("./pages/MovieDetailsPage/MovieDetailsPage.jsx")
+);
+const MovieCast = lazy(() => import("./components/MovieCast/MovieCast.jsx"));
+const MovieReviews = lazy(() =>
+  import("./components/MovieReviews/MovieReviews")
+);
 
 import "./App.css";
+import Loader from "./components/Loader/Loader.jsx";
 
 function App() {
   return (
     <div>
       <Navigation />
       <main>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/movies" element={<MoviesPage />} />
-          <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
-            <Route path="cast" element={<MovieCast />} />
-            <Route path="reviews" element={<MovieReviews />} />
-          </Route>
-        </Routes>
+        <Suspense fallback={<Loader />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/movies" element={<MoviesPage />} />
+            <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
+              <Route path="cast" element={<MovieCast />} />
+              <Route path="reviews" element={<MovieReviews />} />
+            </Route>
+          </Routes>
+        </Suspense>
       </main>
     </div>
   );

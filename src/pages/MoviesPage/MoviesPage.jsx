@@ -1,20 +1,19 @@
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import Loader from "../../Loader/Loader";
-import LoadMoreBtn from "../../LoadMoreBtn/LoadMoreBtn";
-import MovieList from "../../MovieList/MovieList";
-import ToTopButton from "../../ToTopButton/ToTopButton";
+import { useLocation, useSearchParams } from "react-router-dom";
 
-import { getGenres, searchMovies } from "../../../services/api";
+import Loader from "../../components/Loader/Loader";
+import LoadMoreBtn from "../../components/LoadMoreBtn/LoadMoreBtn";
+import MovieList from "../../components/MovieList/MovieList";
+import ToTopButton from "../../components/ToTopButton/ToTopButton";
+
+import { getGenres, searchMovies } from "../../services/api";
 
 import css from "./MoviesPage.module.css";
 
-const initialValues = {
-  query: "",
-};
-
 const MoviesPage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [movies, setMovies] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [genresList, setGenresList] = useState([]);
@@ -24,6 +23,14 @@ const MoviesPage = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [isBtnVisible, setIsBtnVisible] = useState(false);
   const [windowScroll, setWindowScroll] = useState(false);
+
+  const location = useLocation();
+
+  const queryValue = searchParams.get("query");
+
+  const initialValues = {
+    query: queryValue || "",
+  };
 
   useEffect(() => {
     const getGenresList = async () => {
@@ -72,10 +79,13 @@ const MoviesPage = () => {
     };
 
     fethcSearchResults();
-  }, [query, page]);
+  }, [query, page, location]);
 
   const onSearch = (query) => {
     setMovies([]);
+    setSearchParams({
+      query: query,
+    });
     setQuery(query);
     setPage(1);
     if (!query.trim()) {
@@ -86,7 +96,6 @@ const MoviesPage = () => {
 
   const handlSubmit = (values, actions) => {
     onSearch(values.query);
-    actions.resetForm();
   };
 
   useEffect(() => {

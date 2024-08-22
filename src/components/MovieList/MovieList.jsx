@@ -1,13 +1,15 @@
 import MovieCard from "../MovieCard/MovieCard";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import css from "./MovieList.module.css";
 
 const MovieList = ({ results, genresList }) => {
+  const location = useLocation();
   return (
     <ul className={css.moviesList}>
       {results.map((movie) => {
         return (
           <Link
+            state={{ from: location }}
             to={`/movies/${movie.id}`}
             className={css.moviesListItem}
             key={movie.id}
