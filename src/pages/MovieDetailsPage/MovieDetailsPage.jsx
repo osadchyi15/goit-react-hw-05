@@ -55,9 +55,6 @@ const MovieDetailsPage = () => {
     <>
       {movieDetails !== null && (
         <div className={css.detailsPage}>
-          <Link to={backLinkRef.current} className={css.goBackBtn}>
-            &#8617; Go back
-          </Link>
           <h1 className={css.movieDetailsTitle}>
             About the movie "{movieDetails.title}"
           </h1>
@@ -65,6 +62,9 @@ const MovieDetailsPage = () => {
           {error !== null && <p>{error}</p>}
           <div className={css.movieDetails}>
             <div className={css.posterWrapper}>
+              <Link to={backLinkRef.current} className={css.goBackBtn}>
+                &#8617; Back
+              </Link>
               {movieDetails.poster_path === null ? (
                 <BsFileImage className={css.moviePoster} />
               ) : (

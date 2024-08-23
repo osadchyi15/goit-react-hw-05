@@ -4,6 +4,7 @@ import css from "./MovieList.module.css";
 
 const MovieList = ({ results, genresList }) => {
   const location = useLocation();
+
   return (
     <ul className={css.moviesList}>
       {results.map((movie) => {

@@ -96,6 +96,7 @@ const MoviesPage = () => {
 
   const handlSubmit = (values, actions) => {
     onSearch(values.query);
+    actions.resetForm();
   };
 
   useEffect(() => {
@@ -113,6 +114,12 @@ const MoviesPage = () => {
   const onClickMoreBtn = () => {
     setPage((actPage) => actPage + 1);
   };
+
+  useEffect(() => {
+    if (queryValue) {
+      setQuery(queryValue);
+    }
+  }, [queryValue]);
 
   return (
     <>
