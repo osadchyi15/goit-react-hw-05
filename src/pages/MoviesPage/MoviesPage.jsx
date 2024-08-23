@@ -29,7 +29,7 @@ const MoviesPage = () => {
   const queryValue = searchParams.get("query");
 
   const initialValues = {
-    query: queryValue || "",
+    query: "",
   };
 
   useEffect(() => {
@@ -81,12 +81,18 @@ const MoviesPage = () => {
     fethcSearchResults();
   }, [query, page, location]);
 
+  useEffect(() => {
+    if (queryValue) {
+      setQuery(queryValue);
+    }
+  }, [queryValue]);
+
   const onSearch = (query) => {
     setMovies([]);
+    setQuery(query);
     setSearchParams({
       query: query,
     });
-    setQuery(query);
     setPage(1);
     if (!query.trim()) {
       setIsBtnVisible(false);
@@ -114,12 +120,6 @@ const MoviesPage = () => {
   const onClickMoreBtn = () => {
     setPage((actPage) => actPage + 1);
   };
-
-  useEffect(() => {
-    if (queryValue) {
-      setQuery(queryValue);
-    }
-  }, [queryValue]);
 
   return (
     <>
