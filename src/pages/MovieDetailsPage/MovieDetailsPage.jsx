@@ -79,8 +79,9 @@ const MovieDetailsPage = () => {
             </div>
 
             <div className={css.movieDescr}>
-              <p className={css.movieTitle}>
-                {movieDetails.title}{" "}
+              <p className={css.movieTitle}>{movieDetails.title}</p>
+              <p className={css.movieDescrTitle}>
+                Release year:&nbsp;
                 {movieDetails.release_date === null
                   ? ""
                   : movieDetails.release_date.slice(0, 4)}
