@@ -87,8 +87,8 @@ const MovieDetailsPage = () => {
                   : movieDetails.release_date.slice(0, 4)}
               </p>
 
-              <p className={css.movieDescrText}>
-                User Score: {Math.round(movieDetails.vote_average) * 10}%
+              <p className={css.movieDescrTitle}>
+                Rating:&nbsp;{Math.round(movieDetails.vote_average * 10)}%
               </p>
               <div>
                 <p className={css.movieDescrTitle}>Overview</p>
