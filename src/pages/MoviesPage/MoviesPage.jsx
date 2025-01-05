@@ -5,6 +5,8 @@ import { fetchSearchMovie } from "../../services/apiTMDB";
 import Loader from "../../components/Loader/Loader";
 import LoadMoreBtn from "../../components/LoadMoreBtn/LoadMoreBtn";
 import s from "./MoviesPage.module.css";
+import toast from "react-hot-toast";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 const MoviesPage = () => {
   const { query, searchList, setSearchList } = useContext(movieContext);
@@ -13,9 +15,18 @@ const MoviesPage = () => {
   const [totalPages, setTotalPages] = useState(false);
   const [isMoreBtn, setIsMoreBtn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    if (!query) return setIsMoreBtn(false);
+    if (!query) {
+      toast.error("Request is empty. \n Enter your request.", {
+        position: "bottom-right",
+      });
+      setIsMoreBtn(false);
+      return;
+    }
+
+    setIsError(false);
 
     const fetchSearch = async () => {
       try {
@@ -28,12 +39,24 @@ const MoviesPage = () => {
 
         setTotalPages(total_pages);
         setSearchList((prev) => [...prev, ...results]);
-
         setIsMoreBtn(true);
-        pageSearch === totalPages && setIsMoreBtn(false);
-        results.length === 0 && setIsMoreBtn(false);
+
+        pageSearch === totalPages &&
+          setIsMoreBtn(false) &
+            toast("You have reached the end of collection!", {
+              icon: "✨",
+              position: "bottom-right",
+            });
+
+        results.length === 0 &&
+          setIsMoreBtn(false) &
+            toast("Ooops!\nNothing found matching your request.", {
+              icon: "🤷‍♀️",
+              position: "bottom-right",
+            });
       } catch (error) {
         console.log(error);
+        setIsError(true);
       } finally {
         setIsLoading(false);
       }
@@ -53,6 +76,7 @@ const MoviesPage = () => {
       {isMoreBtn && (
         <LoadMoreBtn isLoading={isLoading} onClickMoreBtn={onClickMoreBtn} />
       )}
+      {isError && <ErrorMessage />}
     </div>
   );
 };

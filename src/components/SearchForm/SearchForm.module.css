@@ -60,14 +60,10 @@
   background: linear-gradient(
     to right,
     rgba(255, 249, 76, 0.05),
-    rgba(255, 249, 76, 0.5),
     rgba(255, 249, 76, 0.9),
     rgba(0, 79, 249, 0.9),
-    rgba(0, 79, 249, 0.5),
     rgba(0, 79, 249, 0.05)
   );
-
-  background-position: 100% 200%;
   width: 100%;
   z-index: 2;
 }
