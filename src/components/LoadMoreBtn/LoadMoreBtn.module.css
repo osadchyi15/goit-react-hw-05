@@ -1,0 +1,23 @@
+.loadMoreButton {
+  display: inline-flex;
+  width: 120px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  font-size: 18px;
+  border: 1px solid black;
+  text-decoration: none;
+  border-radius: 8px;
+  background-color: #fff;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  transition: all 0.3s;
+  margin-top: 20px;
+}
+
+.loadMoreButton:hover {
+  background-color: black;
+  color: #fff;
+  border: 1px solid #fff;
+}
