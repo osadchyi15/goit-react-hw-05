@@ -59,10 +59,10 @@
 
   background: linear-gradient(
     to right,
-    rgba(255, 249, 76, 0.05),
-    rgba(255, 249, 76, 0.9),
-    rgba(0, 79, 249, 0.9),
-    rgba(0, 79, 249, 0.05)
+    rgba(23, 23, 23, 0.05),
+    rgb(23, 23, 23),
+    rgb(20, 33, 65),
+    rgba(20, 33, 65, 0.05)
   );
   width: 100%;
   z-index: 2;

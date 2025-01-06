@@ -5,13 +5,10 @@ const ErrorMessage = () => {
     <div className={s.errorWrapper}>
       <p className={s.errorMessage}>We are very sorry. An error occurred.</p>
       {/* // TODO Home link for error */}
-      <p>
-        Click&nbsp;
-        <a className={s.errorHomeLink} href="" title="Home">
-          here
-        </a>
-        &nbsp;to go Home page!
-      </p>
+
+      <a className={s.errorHomeLink} href="" title="Home">
+        Click here to go to the Home page!
+      </a>
     </div>
   );
 };

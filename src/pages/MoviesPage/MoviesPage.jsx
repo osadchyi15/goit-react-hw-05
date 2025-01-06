@@ -32,6 +32,7 @@ const MoviesPage = () => {
       try {
         setIsLoading(true);
         setIsMoreBtn(false);
+
         const { results, total_pages } = await fetchSearchMovie(
           query,
           pageSearch

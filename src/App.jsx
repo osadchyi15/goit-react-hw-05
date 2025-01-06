@@ -8,7 +8,7 @@ import SearchForm from "./components/SearchForm/SearchForm";
 function App() {
   return (
     <>
-      {/* <Navigation /> */}
+      <Navigation />
       {/* <SearchForm /> */}
       <HomePage />
       {/* <MoviesPage /> */}

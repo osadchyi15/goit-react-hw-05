@@ -6,6 +6,8 @@ import { fetchDetailsMovie } from "../../services/apiTMDB";
 import s from "./MovieDetailsPage.module.css";
 import { Rating } from "react-simple-star-rating";
 import ToTopButton from "../../components/ToTopButton/ToTopButton";
+import { IoIosArrowBack } from "react-icons/io";
+import Loader from "../../components/Loader/Loader";
 
 const MovieDetailsPage = () => {
   const { movieId } = useContext(movieContext);
@@ -22,7 +24,7 @@ const MovieDetailsPage = () => {
         setIsLoading(true);
 
         const data = await fetchDetailsMovie(movieId);
-
+        setIsLoading(false);
         setDetails(data);
       } catch (error) {
         console.log(error);
@@ -53,7 +55,9 @@ const MovieDetailsPage = () => {
         }}
       >
         <div className={s.backBtn}>
-          <p className={s.backBtnArrow}>&#60;</p>
+          <div className={s.backBtnArrow}>
+            <IoIosArrowBack />
+          </div>
           <p className={s.backBtnText}>Back Home</p>
         </div>
 
@@ -78,7 +82,7 @@ const MovieDetailsPage = () => {
                     <div>{details.title}</div>
                   ) : (
                     <div>
-                      <p>{details.title}</p>
+                      <p className={s.title}>{details.title}</p>
                       <p>{details.original_title} </p>
                     </div>
                   )}
@@ -117,30 +121,37 @@ const MovieDetailsPage = () => {
                   }) ?? []}
                 </p>
               </div>
-              {details.homepage && (
-                <div className={(s.detailsInfoItem, s.detailsHomePage)}>
-                  <a
-                    className={s.detailsHomePage}
-                    href={details.homepage}
-                    target="_blank"
-                  >
-                    Movie Webpage
+              <div className={s.detailsLinks}>
+                {details.homepage && (
+                  <div className={s.detailsInfoItem}>
+                    <a
+                      className={s.detailsLink}
+                      href={details.homepage}
+                      target="_blank"
+                    >
+                      Movie Webpage
+                    </a>
+                  </div>
+                )}
+                <div className={s.detailsInfoItem}>
+                  <a className={s.detailsLink} href="">
+                    Reviews
                   </a>
                 </div>
-              )}
+                <div className={s.detailsInfoItem}>
+                  <a className={s.detailsLink} href="">
+                    Cast
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div>
-            <a href="">Cast</a>
-            <a href="">Reviews</a>
           </div>
         </div>
       </div>
 
-      {/* <MovieReviews /> */}
+      <MovieReviews />
       {/* <MovieCast /> */}
-
+      {isLoading && <Loader />}
       {windowScroll && <ToTopButton onClickTopButton={onClickTopButton} />}
     </div>
   );

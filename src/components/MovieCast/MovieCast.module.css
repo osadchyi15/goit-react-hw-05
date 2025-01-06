@@ -1,0 +1,19 @@
+.castList {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
+  justify-content: space-evenly;
+}
+
+.castCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: end;
+  aspect-ratio: 2 / 3;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 6px 10px rgb(0, 0, 0);
+  text-align: end;
+}

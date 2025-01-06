@@ -2,3 +2,14 @@
   font-size: 24px;
   font-weight: 600;
 }
+
+.errorHomeLink {
+  color: inherit;
+  border-bottom: 1px solid rgb(249, 249, 249);
+  transition: 500ms;
+}
+
+.errorHomeLink:hover {
+  color: inherit;
+  font-weight: 700;
+}

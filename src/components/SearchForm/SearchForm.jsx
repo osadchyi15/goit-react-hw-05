@@ -7,7 +7,6 @@ const SearchForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.elements.search.value);
     setQuery(e.target.elements.search.value);
     setSearchList([]);
     e.target.reset();

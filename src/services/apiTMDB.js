@@ -1,7 +1,7 @@
 import axios from "axios";
 
 axios.defaults.baseURL = "https://api.themoviedb.org/3";
-axios.defaults.params = { language: "en-US, uk-UA" };
+axios.defaults.params = { language: "en-US, uk-UA, ru-RU" };
 axios.defaults.headers.common = {
   accept: "application/json",
   Authorization:
@@ -32,12 +32,8 @@ export const fetchDetailsMovie = async (movieId) => {
   return data;
 };
 
-export const fetchCastMovie = async (movieId, page) => {
-  const { data } = await axios.get(`/movie/${movieId}/credits`, {
-    params: {
-      page,
-    },
-  });
+export const fetchCastMovie = async (movieId) => {
+  const { data } = await axios.get(`/movie/${movieId}/credits`);
   return data;
 };
 

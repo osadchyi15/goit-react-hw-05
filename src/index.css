@@ -5,9 +5,9 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background: #004ff9;
-  background: -webkit-linear-gradient(to right, #fff94c, #004ff9);
-  background: linear-gradient(to right, #fff94c, #004ff9);
+  background: #171717;
+  background: -webkit-linear-gradient(to right, #171717, #142141);
+  background: linear-gradient(to right, #171717, #142141);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

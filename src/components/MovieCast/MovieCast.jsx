@@ -1,49 +1,76 @@
 import s from "./MovieCast.module.css";
 
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { movieContext } from "../../context/MovieProvider/MovieProvider";
 import { fetchCastMovie } from "../../services/apiTMDB";
+import Loader from "../Loader/Loader";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 const MovieCast = () => {
-  const { cast, setCast, movieId, pageCast, setPageCast } =
-    useContext(movieContext);
+  const { movieId } = useContext(movieContext);
+
+  const [castList, setCastList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     if (!movieId) return;
+    setIsError(false);
 
     const fetchCast = async () => {
       try {
-        const data = await fetchCastMovie(movieId, pageCast);
-        setCast(data);
+        setIsLoading(true);
+
+        const { cast } = await fetchCastMovie(movieId);
+
+        setCastList(cast);
+        setIsLoading(false);
       } catch (error) {
+        setIsError(true);
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchCast();
-  }, [movieId, pageCast]);
-
-  const castList = cast.cast;
+  }, [movieId]);
 
   return (
-    <div>
-      <ul>
+    <div className={s.castWrapper}>
+      <ul className={s.castList}>
         {castList?.map((actor) => {
           return (
-            <li key={actor.id}>
-              <div>
-                <img
-                  src={
-                    "https://image.tmdb.org/t/p/w500" + `${actor.profile_path}`
-                  }
-                />
+            <li className={s.castItem} key={actor.id}>
+              <div
+                className={s.castCard}
+                style={{
+                  background:
+                    actor.profile_path && actor.profile_path.length > 0
+                      ? `linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url("https://image.tmdb.org/t/p/w500${actor.profile_path}")`
+                      : `linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url("/actor.svg")`,
+                  backgroundSize:
+                    actor.profile_path && actor.profile_path.length > 0
+                      ? "cover"
+                      : "contain",
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "center",
+                }}
+              >
+                <div className={s.castInfo}>
+                  <div>{actor.name}</div>
+                  {actor.name.trim().toLowerCase() !==
+                    actor.character.trim().toLowerCase() && (
+                    <div>{actor.character}</div>
+                  )}
+                </div>
               </div>
-              <div>{actor.name}</div>
-              <div>{actor.character}</div>
             </li>
           );
         })}
       </ul>
+      {isLoading && <Loader />}
+      {isError && <ErrorMessage />}
     </div>
   );
 };

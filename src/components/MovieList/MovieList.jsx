@@ -1,7 +1,7 @@
 import s from "./MovieList.module.css";
 import { useContext } from "react";
 import { movieContext } from "../../context/MovieProvider/MovieProvider";
-import { useState } from "react";
+
 import { Rating } from "react-simple-star-rating";
 
 const MovieList = ({ moviesList }) => {
@@ -28,8 +28,8 @@ const MovieList = ({ moviesList }) => {
                 style={{
                   background:
                     movie.poster_path && movie.poster_path.length > 0
-                      ? `linear-gradient(90deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url("https://image.tmdb.org/t/p/w500${movie.poster_path}")`
-                      : `linear-gradient(90deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url("/film.svg")`,
+                      ? `linear-gradient( rgba(0, 0, 0, 1), rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url("https://image.tmdb.org/t/p/w500${movie.poster_path}")`
+                      : `linear-gradient( rgba(0, 0, 0, 1), rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url("/film.svg")`,
                   backgroundSize:
                     movie.poster_path && movie.poster_path.length > 0
                       ? "cover"

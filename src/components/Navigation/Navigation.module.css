@@ -1,0 +1,33 @@
+.navigationWrapper {
+  position: fixed;
+  top: 85px;
+  left: 0;
+}
+
+.navigationIcons {
+  width: 40px;
+  height: 40px;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 0px 8px;
+}
+
+.navigationLinkComplex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: rgb(249, 249, 249);
+}
+
+.navigationLink:hover {
+  transition: 500ms;
+}
+
+.navigationLink:hover {
+  transform: translateY(-4px);
+}

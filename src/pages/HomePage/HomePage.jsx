@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import ToTopButton from "../../components/ToTopButton/ToTopButton";
+import s from "./HomePage.module.css";
 
 const HomePage = () => {
   const [moviesList, setMoviesList] = useState([]);
@@ -71,13 +72,13 @@ const HomePage = () => {
   };
 
   return (
-    <div>
+    <div className={s.homePage}>
       {isLoading && <Loader />}
       <MovieList moviesList={moviesList} />
       {isMoreBtn && (
         <LoadMoreBtn isLoading={isLoading} onClickMoreBtn={onClickMoreBtn} />
       )}
-      {isError && <ErrorMessage />}{" "}
+      {isError && <ErrorMessage />}
       {windowScroll && <ToTopButton onClickTopButton={onClickTopButton} />}
     </div>
   );

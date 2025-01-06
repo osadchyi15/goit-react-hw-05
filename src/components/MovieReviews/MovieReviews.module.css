@@ -1,0 +1,37 @@
+.reviewsWrapper {
+  background: radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8));
+  box-shadow: 0 6px 10px rgb(0, 0, 0);
+  border-radius: 20px;
+}
+
+.reviewsList {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  text-align: justify;
+  padding: 40px;
+}
+
+.reviewItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  box-shadow: 1px 3px 8px rgb(249, 249, 249, 0.1);
+  padding: 10px;
+}
+
+.reviewAuthor {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.reviewCreated {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.reviewsOut {
+  font-size: 20px;
+  padding: 20px;
+}
