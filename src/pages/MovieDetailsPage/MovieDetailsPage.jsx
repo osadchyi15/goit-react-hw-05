@@ -8,6 +8,7 @@ import { Rating } from "react-simple-star-rating";
 import ToTopButton from "../../components/ToTopButton/ToTopButton";
 import { IoIosArrowBack } from "react-icons/io";
 import Loader from "../../components/Loader/Loader";
+import filmLogo from "../../img/film.svg";
 
 const MovieDetailsPage = () => {
   const { movieId } = useContext(movieContext);
@@ -54,98 +55,106 @@ const MovieDetailsPage = () => {
           backgroundImage: `radial-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url("https://image.tmdb.org/t/p/w500${details.poster_path}")`,
         }}
       >
-        <div className={s.backBtn}>
-          <div className={s.backBtnArrow}>
-            <IoIosArrowBack />
+
+        {/* button BACK HOME */}
+        <div className={s.detailsBackBtn}>
+          <div className={s.backBtn}>
+            <div className={s.backBtnArrow}>
+              <IoIosArrowBack />
+            </div>
+            <p className={s.backBtnText}>Back Home</p>
           </div>
-          <p className={s.backBtnText}>Back Home</p>
         </div>
 
-        <div className={s.detailsMainInfo}>
-          <div className={s.detailsInfo}>
-            <img
-              className={s.detailsPoster}
-              src={
-                details.poster_path !== null
-                  ? `https://image.tmdb.org/t/p/w500${details.poster_path}`
-                  : `/film.svg`
-              }
-              width={360}
-              height={480}
-              alt={details.title}
-            />
-
-            <div className={s.detailsInfoList}>
-              <div className={s.detailsInfoItem}>
-                <div className={s.detailsInfoTitle}>
-                  {details.title === details.original_title ? (
-                    <div>{details.title}</div>
-                  ) : (
-                    <div>
-                      <p className={s.title}>{details.title}</p>
-                      <p>{details.original_title} </p>
-                    </div>
-                  )}
-                </div>
-
-                <div
-                  style={{
-                    direction: "ltr",
-                    fontFamily: "sans-serif",
-                    touchAction: "none",
-                  }}
-                >
-                  <Rating
-                    allowFraction
-                    iconsCount={5}
-                    readonly={true}
-                    initialValue={details.vote_average / 2}
-                    onClick={function noRefCheck() {}}
-                    size={20}
-                  />
-                </div>
-              </div>
-
-              <div className={s.detailsInfoItem}>
-                <p>{details.overview}</p>
-              </div>
-
-              <div className={s.detailsInfoItem}>
-                <p>
-                  {details.genres?.map((genre, index, array) => {
-                    return (
-                      <span key={genre.id}>
-                        {genre.name} {index < array.length - 1 && ", "}
-                      </span>
-                    );
-                  }) ?? []}
-                </p>
-              </div>
-              <div className={s.detailsLinks}>
-                {details.homepage && (
-                  <div className={s.detailsInfoItem}>
-                    <a
-                      className={s.detailsLink}
-                      href={details.homepage}
-                      target="_blank"
-                    >
-                      Movie Webpage
-                    </a>
+{/* Text information  about movie*/}
+        <div className={s.detailsInfo}>
+          <div className={s.detailsInfoList}>
+            <div className={s.detailsInfoItem}>
+              <div className={s.detailsInfoTitle}>
+                {details.title === details.original_title ? (
+                  <div>{details.title}</div>
+                ) : (
+                  <div>
+                    <p className={s.title}>{details.title}</p>
+                    <p>{details.original_title} </p>
                   </div>
                 )}
+              </div>
+
+              <div
+                style={{
+                  direction: "ltr",
+                  fontFamily: "sans-serif",
+                  touchAction: "none",
+                }}
+              >
+                <Rating
+                  allowFraction
+                  iconsCount={5}
+                  readonly={true}
+                  initialValue={details.vote_average / 2}
+                  onClick={function noRefCheck() {}}
+                  size={20}
+                />
+              </div>
+            </div>
+
+            <div className={s.detailsInfoItem}>
+              <p>{details.overview}</p>
+            </div>
+
+            <div className={s.detailsInfoItem}>
+              <p>
+                {details.genres?.map((genre, index, array) => {
+                  return (
+                    <span key={genre.id}>
+                      {genre.name} {index < array.length - 1 && ", "}
+                    </span>
+                  );
+                }) ?? []}
+              </p>
+            </div>
+
+            {/* Links */}
+            <div className={s.detailsLinks}>
+              {details.homepage && (
                 <div className={s.detailsInfoItem}>
-                  <a className={s.detailsLink} href="">
-                    Reviews
+                  <a
+                    className={s.detailsLink}
+                    href={details.homepage}
+                    target="_blank"
+                  >
+                    Homepage
                   </a>
                 </div>
-                <div className={s.detailsInfoItem}>
-                  <a className={s.detailsLink} href="">
-                    Cast
-                  </a>
-                </div>
+              )}
+              <div className={s.detailsInfoItem}>
+                <a className={s.detailsLink} href="">
+                  Reviews
+                </a>
+              </div>
+              <div className={s.detailsInfoItem}>
+                <a className={s.detailsLink} href="">
+                  Cast
+                </a>
               </div>
             </div>
           </div>
+        </div>
+
+{/* Movie poster */}
+        <div className={s.detailsPoster}>
+          <img
+            className={s.detailsPosterImg}
+            src={
+              details.poster_path !== null
+                ? `https://image.tmdb.org/t/p/w500${details.poster_path}`
+                : `${filmLogo}`
+            }
+            width={360}
+            height={480}
+            alt={details.title}
+          />
         </div>
       </div>
 

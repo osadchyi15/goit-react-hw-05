@@ -9,9 +9,9 @@ function App() {
   return (
     <>
       <Navigation />
-      {/* <SearchForm /> */}
-      <HomePage />
-      {/* <MoviesPage /> */}
+      <SearchForm />
+      {/* <HomePage /> */}
+      <MoviesPage />
       <MovieDetailsPage />
     </>
   );

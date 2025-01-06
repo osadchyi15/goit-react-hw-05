@@ -34,6 +34,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   width: 100px;
   height: 40px;
   color: black;
@@ -46,7 +47,7 @@
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 6px 10px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 6px 10px rgba(101, 100, 100, 0.5);
   }
 }
 

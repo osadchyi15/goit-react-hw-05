@@ -5,6 +5,7 @@ import { movieContext } from "../../context/MovieProvider/MovieProvider";
 import { fetchCastMovie } from "../../services/apiTMDB";
 import Loader from "../Loader/Loader";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import actorLogo from "../../img/actor.svg";
 
 const MovieCast = () => {
   const { movieId } = useContext(movieContext);
@@ -48,7 +49,7 @@ const MovieCast = () => {
                   background:
                     actor.profile_path && actor.profile_path.length > 0
                       ? `linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url("https://image.tmdb.org/t/p/w500${actor.profile_path}")`
-                      : `linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url("/actor.svg")`,
+                      : `linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url(${actorLogo})`,
                   backgroundSize:
                     actor.profile_path && actor.profile_path.length > 0
                       ? "cover"

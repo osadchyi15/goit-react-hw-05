@@ -1,6 +1,7 @@
 import s from "./MovieList.module.css";
 import { useContext } from "react";
 import { movieContext } from "../../context/MovieProvider/MovieProvider";
+import logoFilm from "../../img/film.svg";
 
 import { Rating } from "react-simple-star-rating";
 
@@ -29,7 +30,7 @@ const MovieList = ({ moviesList }) => {
                   background:
                     movie.poster_path && movie.poster_path.length > 0
                       ? `linear-gradient( rgba(0, 0, 0, 1), rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url("https://image.tmdb.org/t/p/w500${movie.poster_path}")`
-                      : `linear-gradient( rgba(0, 0, 0, 1), rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url("/film.svg")`,
+                      : `linear-gradient( rgba(0, 0, 0, 1), rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url(${logoFilm})`,
                   backgroundSize:
                     movie.poster_path && movie.poster_path.length > 0
                       ? "cover"
