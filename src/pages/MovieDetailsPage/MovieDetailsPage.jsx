@@ -150,7 +150,7 @@ const MovieDetailsPage = () => {
       </div>
 
       <MovieReviews />
-      {/* <MovieCast /> */}
+      <MovieCast />
       {isLoading && <Loader />}
       {windowScroll && <ToTopButton onClickTopButton={onClickTopButton} />}
     </div>
