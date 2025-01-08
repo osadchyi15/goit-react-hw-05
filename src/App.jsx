@@ -10,10 +10,6 @@ import Navigation from "./components/Navigation/Navigation";
 import MovieCast from "./components/MovieCast/MovieCast";
 import MovieReviews from "./components/MovieReviews/MovieReviews";
 
-const buildLinkClass = ({ isActive }) => {
-  return clsx(s.link, isActive && s.active);
-};
-
 function App() {
   return (
     <div>
@@ -21,9 +17,8 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="movies" element={<MoviesPage />} />
-        <Route path="details" element={<MovieDetailsPage />} />
-        <Route path="details/:movieId" element={<MovieDetailsPage />}>
+        <Route path="/movies" element={<MoviesPage />} />
+        <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
           <Route path="cast" element={<MovieCast />} />
           <Route path="reviews" element={<MovieReviews />} />
         </Route>

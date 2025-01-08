@@ -20,9 +20,6 @@ const MoviesPage = () => {
 
   useEffect(() => {
     if (!query) {
-      toast.error("Request is empty. \n Enter your request.", {
-        position: "bottom-right",
-      });
       setIsMoreBtn(false);
       return;
     }

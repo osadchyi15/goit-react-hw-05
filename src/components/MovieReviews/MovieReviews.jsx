@@ -1,13 +1,14 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import s from "./MovieReviews.module.css";
-import { movieContext } from "../../context/MovieProvider/MovieProvider";
+
 import { fetchReviewsMovie } from "../../services/apiTMDB";
 import Loader from "../Loader/Loader";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import { useParams } from "react-router-dom";
 
 const MovieReviews = () => {
-  const { movieId } = useContext(movieContext);
+  const { movieId } = useParams();
 
   const [reviewsList, setReviewsList] = useState([]);
   const [pageReviews, setPageReviews] = useState(1);
@@ -45,6 +46,11 @@ const MovieReviews = () => {
     fetchReviews();
   }, [movieId, pageReviews]);
 
+  useEffect(() => {
+    const reviewsId = document.querySelector("#reviews");
+    reviewsId.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
+
   const onClickMoreBtn = () => {
     if (pageReviews < totalPages) {
       setPageReviews((prev) => prev + 1);
@@ -71,15 +77,15 @@ const MovieReviews = () => {
 
   return (
     <div>
-      <div className={s.reviewsWrapper}>
+      <div className={s.reviewsWrapper} id="reviews">
         {totalPages === 0 && !isLoading && (
           <p className={s.reviewsOut}>No reviews found.</p>
         )}
 
         {totalPages > 0 && (
           <ul className={s.reviewsList}>
-            {reviewsList.map((review) => (
-              <li className={s.reviewItem} key={review.id}>
+            {reviewsList.map((review, index) => (
+              <li className={s.reviewItem} key={review.id + index}>
                 <div className={s.reviewAuthor}>{review.author}</div>
                 <div className={s.reviewsContent}>{review.content}</div>
                 <div className={s.reviewCreated}>

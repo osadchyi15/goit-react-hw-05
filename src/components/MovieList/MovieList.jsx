@@ -1,29 +1,19 @@
 import s from "./MovieList.module.css";
-import { useContext } from "react";
-import { movieContext } from "../../context/MovieProvider/MovieProvider";
 import logoFilm from "../../img/film.svg";
-
 import { Rating } from "react-simple-star-rating";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const MovieList = ({ moviesList }) => {
-  const { setMovieId } = useContext(movieContext);
-
-  const handleMovieClick = (e) => {
-    const movieId = e.target.dataset.movieid;
-    setMovieId(movieId);
-  };
-
   return (
     <div>
       <ul className={s.movieList}>
-        {moviesList.map((movie) => {
+        {moviesList.map((movie, index) => {
           return (
             <li
               className={s.movieItem}
-              key={movie.id}
-              onClick={handleMovieClick}
-              data-movieid={movie.id}
+              key={movie.id + index}
+              // onClick={handleMovieClick}
+              // data-movieid={movie.id}
             >
               <div
                 className={s.movie}
@@ -61,15 +51,15 @@ const MovieList = ({ moviesList }) => {
                   </div>
                 </div>
                 <div className={s.bottomInfo}>
-                  <NavLink to="/details" className={s.buildLinkClass}>
+                  <Link to={`/movies/${movie.id}`} className={s.buildLinkClass}>
                     <p
                       className={s.movieInfoBtn}
-                      onClick={handleMovieClick}
-                      data-movieid={movie.id}
+                      // onClick={handleMovieClick}
+                      // data-movieid={movie.id}
                     >
                       More info
                     </p>
-                  </NavLink>
+                  </Link>
                 </div>
               </div>
             </li>

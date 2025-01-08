@@ -101,7 +101,7 @@
   gap: 20px;
 }
 
-.detailsLink {
+.link {
   display: block;
   text-align: left;
   color: rgb(249, 249, 249);
@@ -110,11 +110,15 @@
   border-bottom: 1px solid rgb(249, 249, 249, 0.3);
 }
 
-.detailsLink:hover {
+.link:hover {
   transform: translateY(-4px);
   color: rgb(249, 249, 249);
 }
 
 .title {
   border-bottom: 1px solid rgba(249, 249, 249, 0.2);
+}
+
+.active {
+  font-weight: 900;
 }

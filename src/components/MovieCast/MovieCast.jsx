@@ -1,14 +1,13 @@
 import s from "./MovieCast.module.css";
-
-import { useContext, useEffect, useState } from "react";
-import { movieContext } from "../../context/MovieProvider/MovieProvider";
+import { useEffect, useState } from "react";
 import { fetchCastMovie } from "../../services/apiTMDB";
 import Loader from "../Loader/Loader";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import actorLogo from "../../img/actor.svg";
+import { useParams } from "react-router-dom";
 
 const MovieCast = () => {
-  const { movieId } = useContext(movieContext);
+  const { movieId } = useParams();
 
   const [castList, setCastList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -37,8 +36,13 @@ const MovieCast = () => {
     fetchCast();
   }, [movieId]);
 
+  useEffect(() => {
+    const castId = document.querySelector("#cast");
+    castId.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
+
   return (
-    <div className={s.castWrapper}>
+    <div className={s.castWrapper} id="cast">
       {castList.length === 0 && !isLoading && (
         <p className={s.castOut}>No cast found.</p>
       )}

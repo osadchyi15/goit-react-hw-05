@@ -1,7 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import { movieContext } from "../../context/MovieProvider/MovieProvider";
-import MovieReviews from "../../components/MovieReviews/MovieReviews";
-import MovieCast from "../../components/MovieCast/MovieCast";
+import { useEffect, useState } from "react";
 import { fetchDetailsMovie } from "../../services/apiTMDB";
 import s from "./MovieDetailsPage.module.css";
 import { Rating } from "react-simple-star-rating";
@@ -9,10 +6,15 @@ import ToTopButton from "../../components/ToTopButton/ToTopButton";
 import { IoIosArrowBack } from "react-icons/io";
 import Loader from "../../components/Loader/Loader";
 import filmLogo from "../../img/film.svg";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useParams } from "react-router-dom";
+import clsx from "clsx";
+
+const buildLinkClass = ({ isActive }) => {
+  return clsx(s.link, isActive && s.active);
+};
 
 const MovieDetailsPage = () => {
-  const { movieId } = useContext(movieContext);
+  const { movieId } = useParams();
 
   const [isLoading, setIsLoading] = useState(false);
   const [details, setDetails] = useState([]);
@@ -26,10 +28,12 @@ const MovieDetailsPage = () => {
         setIsLoading(true);
 
         const data = await fetchDetailsMovie(movieId);
-        setIsLoading(false);
+
         setDetails(data);
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -41,7 +45,9 @@ const MovieDetailsPage = () => {
       window.scrollY > 100 ? setWindowScroll(true) : setWindowScroll(false);
     };
     window.addEventListener("scroll", handleScroll);
-  }, [window.scrollY]);
+  }, []);
+
+  if (!movieId) return isLoading(true);
 
   const onClickTopButton = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -121,22 +127,18 @@ const MovieDetailsPage = () => {
             <div className={s.detailsLinks}>
               {details.homepage && (
                 <div className={s.detailsInfoItem}>
-                  <a
-                    className={s.detailsLink}
-                    href={details.homepage}
-                    target="_blank"
-                  >
+                  <a className={s.link} href={details.homepage} target="_blank">
                     Homepage
                   </a>
                 </div>
               )}
               <div className={s.detailsInfoItem}>
-                <NavLink to="reviews" className={s.detailsLink}>
+                <NavLink to="reviews" className={buildLinkClass}>
                   Reviews
                 </NavLink>
               </div>
               <div className={s.detailsInfoItem}>
-                <NavLink to="cast" className={s.detailsLink}>
+                <NavLink to="cast" className={buildLinkClass}>
                   Cast
                 </NavLink>
               </div>

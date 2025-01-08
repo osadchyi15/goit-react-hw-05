@@ -64,7 +64,7 @@ const HomePage = () => {
       window.scrollY > 100 ? setWindowScroll(true) : setWindowScroll(false);
     };
     window.addEventListener("scroll", handleScroll);
-  }, [window.scrollY]);
+  }, []);
 
   const onClickTopButton = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
