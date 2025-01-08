@@ -1,7 +1,7 @@
 .movieList {
   display: grid;
   gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 200px));
   justify-content: space-evenly;
 }
 
