@@ -72,7 +72,9 @@ const MovieReviews = () => {
   return (
     <div>
       <div className={s.reviewsWrapper}>
-        {totalPages === 0 && <p className={s.reviewsOut}>No reviews found.</p>}
+        {totalPages === 0 && !isLoading && (
+          <p className={s.reviewsOut}>No reviews found.</p>
+        )}
 
         {totalPages > 0 && (
           <ul className={s.reviewsList}>

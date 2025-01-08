@@ -4,6 +4,7 @@ import { movieContext } from "../../context/MovieProvider/MovieProvider";
 import logoFilm from "../../img/film.svg";
 
 import { Rating } from "react-simple-star-rating";
+import { NavLink } from "react-router-dom";
 
 const MovieList = ({ moviesList }) => {
   const { setMovieId } = useContext(movieContext);
@@ -60,13 +61,15 @@ const MovieList = ({ moviesList }) => {
                   </div>
                 </div>
                 <div className={s.bottomInfo}>
-                  <p
-                    className={s.movieInfoBtn}
-                    onClick={handleMovieClick}
-                    data-movieid={movie.id}
-                  >
-                    More info
-                  </p>
+                  <NavLink to="/details" className={s.buildLinkClass}>
+                    <p
+                      className={s.movieInfoBtn}
+                      onClick={handleMovieClick}
+                      data-movieid={movie.id}
+                    >
+                      More info
+                    </p>
+                  </NavLink>
                 </div>
               </div>
             </li>

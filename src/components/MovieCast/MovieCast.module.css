@@ -19,3 +19,12 @@
   text-align: end;
   font-weight: 600;
 }
+
+.castOut {
+  font-size: 20px;
+  padding: 20px;
+  background: radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8));
+  box-shadow: 0 6px 10px rgb(0, 0, 0);
+  border-radius: 20px;
+  padding: 20px;
+}

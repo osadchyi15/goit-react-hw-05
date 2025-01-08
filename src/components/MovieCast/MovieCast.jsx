@@ -39,37 +39,43 @@ const MovieCast = () => {
 
   return (
     <div className={s.castWrapper}>
-      <ul className={s.castList}>
-        {castList?.map((actor) => {
-          return (
-            <li className={s.castItem} key={actor.id}>
-              <div
-                className={s.castCard}
-                style={{
-                  background:
-                    actor.profile_path && actor.profile_path.length > 0
-                      ? `linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url("https://image.tmdb.org/t/p/w500${actor.profile_path}")`
-                      : `linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url(${actorLogo})`,
-                  backgroundSize:
-                    actor.profile_path && actor.profile_path.length > 0
-                      ? "cover"
-                      : "contain",
-                  backgroundRepeat: "no-repeat",
-                  backgroundPosition: "center",
-                }}
-              >
-                <div className={s.castInfo}>
-                  <div>{actor.name}</div>
-                  {actor.name.trim().toLowerCase() !==
-                    actor.character.trim().toLowerCase() && (
-                    <div>{actor.character}</div>
-                  )}
+      {castList.length === 0 && !isLoading && (
+        <p className={s.castOut}>No cast found.</p>
+      )}
+
+      {castList.length > 0 && (
+        <ul className={s.castList}>
+          {castList?.map((actor) => {
+            return (
+              <li className={s.castItem} key={actor.id}>
+                <div
+                  className={s.castCard}
+                  style={{
+                    background:
+                      actor.profile_path && actor.profile_path.length > 0
+                        ? `linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url("https://image.tmdb.org/t/p/w500${actor.profile_path}")`
+                        : `linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url(${actorLogo})`,
+                    backgroundSize:
+                      actor.profile_path && actor.profile_path.length > 0
+                        ? "cover"
+                        : "contain",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center",
+                  }}
+                >
+                  <div className={s.castInfo}>
+                    <div>{actor.name}</div>
+                    {actor.name.trim().toLowerCase() !==
+                      actor.character.trim().toLowerCase() && (
+                      <div>{actor.character}</div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+              </li>
+            );
+          })}
+        </ul>
+      )}
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
     </div>

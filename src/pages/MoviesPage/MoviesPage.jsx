@@ -7,6 +7,7 @@ import LoadMoreBtn from "../../components/LoadMoreBtn/LoadMoreBtn";
 import s from "./MoviesPage.module.css";
 import toast from "react-hot-toast";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import SearchForm from "../../components/SearchForm/SearchForm";
 
 const MoviesPage = () => {
   const { query, searchList, setSearchList } = useContext(movieContext);
@@ -71,13 +72,16 @@ const MoviesPage = () => {
   };
 
   return (
-    <div className={s.moviesPage}>
-      {isLoading && <Loader />}
-      <MovieList moviesList={searchList} />
-      {isMoreBtn && (
-        <LoadMoreBtn isLoading={isLoading} onClickMoreBtn={onClickMoreBtn} />
-      )}
-      {isError && <ErrorMessage />}
+    <div>
+      <SearchForm />
+      <div className={s.moviesPage}>
+        {isLoading && <Loader />}
+        <MovieList moviesList={searchList} />
+        {isMoreBtn && (
+          <LoadMoreBtn isLoading={isLoading} onClickMoreBtn={onClickMoreBtn} />
+        )}
+        {isError && <ErrorMessage />}
+      </div>
     </div>
   );
 };

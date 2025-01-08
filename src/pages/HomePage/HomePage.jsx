@@ -72,14 +72,16 @@ const HomePage = () => {
   };
 
   return (
-    <div className={s.homePage}>
-      {isLoading && <Loader />}
-      <MovieList moviesList={moviesList} />
-      {isMoreBtn && (
-        <LoadMoreBtn isLoading={isLoading} onClickMoreBtn={onClickMoreBtn} />
-      )}
-      {isError && <ErrorMessage />}
-      {windowScroll && <ToTopButton onClickTopButton={onClickTopButton} />}
+    <div>
+      <div className={s.homePage}>
+        {isLoading && <Loader />}
+        <MovieList moviesList={moviesList} />
+        {isMoreBtn && (
+          <LoadMoreBtn isLoading={isLoading} onClickMoreBtn={onClickMoreBtn} />
+        )}
+        {isError && <ErrorMessage />}
+        {windowScroll && <ToTopButton onClickTopButton={onClickTopButton} />}
+      </div>
     </div>
   );
 };

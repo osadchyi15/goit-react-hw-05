@@ -9,6 +9,7 @@ import ToTopButton from "../../components/ToTopButton/ToTopButton";
 import { IoIosArrowBack } from "react-icons/io";
 import Loader from "../../components/Loader/Loader";
 import filmLogo from "../../img/film.svg";
+import { NavLink, Outlet } from "react-router-dom";
 
 const MovieDetailsPage = () => {
   const { movieId } = useContext(movieContext);
@@ -47,7 +48,9 @@ const MovieDetailsPage = () => {
     setWindowScroll(false);
   };
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <div>
       <div
         className={s.detailsWrapper}
@@ -55,7 +58,6 @@ const MovieDetailsPage = () => {
           backgroundImage: `radial-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url("https://image.tmdb.org/t/p/w500${details.poster_path}")`,
         }}
       >
-
         {/* button BACK HOME */}
         <div className={s.detailsBackBtn}>
           <div className={s.backBtn}>
@@ -66,7 +68,7 @@ const MovieDetailsPage = () => {
           </div>
         </div>
 
-{/* Text information  about movie*/}
+        {/* Text information  about movie*/}
         <div className={s.detailsInfo}>
           <div className={s.detailsInfoList}>
             <div className={s.detailsInfoItem}>
@@ -129,20 +131,20 @@ const MovieDetailsPage = () => {
                 </div>
               )}
               <div className={s.detailsInfoItem}>
-                <a className={s.detailsLink} href="">
+                <NavLink to="reviews" className={s.detailsLink}>
                   Reviews
-                </a>
+                </NavLink>
               </div>
               <div className={s.detailsInfoItem}>
-                <a className={s.detailsLink} href="">
+                <NavLink to="cast" className={s.detailsLink}>
                   Cast
-                </a>
+                </NavLink>
               </div>
             </div>
           </div>
         </div>
 
-{/* Movie poster */}
+        {/* Movie poster */}
         <div className={s.detailsPoster}>
           <img
             className={s.detailsPosterImg}
@@ -158,8 +160,8 @@ const MovieDetailsPage = () => {
         </div>
       </div>
 
-      <MovieReviews />
-      <MovieCast />
+      <Outlet />
+
       {isLoading && <Loader />}
       {windowScroll && <ToTopButton onClickTopButton={onClickTopButton} />}
     </div>
