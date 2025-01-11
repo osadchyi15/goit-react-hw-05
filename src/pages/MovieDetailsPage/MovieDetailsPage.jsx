@@ -54,7 +54,7 @@ const MovieDetailsPage = () => {
     window.addEventListener("scroll", handleScroll);
   }, []);
 
-  if (!movieId) return isLoading(true);
+  if (!movieId) return <p>No movie selected</p>;
 
   const onClickTopButton = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });

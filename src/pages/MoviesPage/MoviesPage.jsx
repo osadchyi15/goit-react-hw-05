@@ -58,19 +58,21 @@ const MoviesPage = () => {
         setSearchList((prev) => [...prev, ...results]);
         setIsMoreBtn(true);
 
-        pageSearch === totalPages &&
-          setIsMoreBtn(false) &
-            toast("You have reached the end of collection!", {
-              icon: "✨",
-              position: "bottom-right",
-            });
+        if (pageSearch === totalPages) {
+          setIsMoreBtn(false);
+          toast("You have reached the end of collection!", {
+            icon: "✨",
+            position: "bottom-right",
+          });
+        }
 
-        results.length === 0 &&
-          setIsMoreBtn(false) &
-            toast("Ooops!\nNothing found matching your request.", {
-              icon: "🤷‍♀️",
-              position: "bottom-right",
-            });
+        if (results.length === 0) {
+          setIsMoreBtn(false);
+          toast("Ooops!\nNothing found matching your request.", {
+            icon: "🤷‍♀️",
+            position: "bottom-right",
+          });
+        }
       } catch (error) {
         console.log(error);
         setIsError(true);
