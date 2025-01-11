@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import MovieList from "../../components/MovieList/MovieList";
-import { movieContext } from "../../context/MovieProvider/MovieProvider";
+
 import { fetchSearchMovie } from "../../services/apiTMDB";
 import Loader from "../../components/Loader/Loader";
 import LoadMoreBtn from "../../components/LoadMoreBtn/LoadMoreBtn";
@@ -8,15 +8,33 @@ import s from "./MoviesPage.module.css";
 import toast from "react-hot-toast";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import SearchForm from "../../components/SearchForm/SearchForm";
+import { useSearchParams } from "react-router-dom";
 
 const MoviesPage = () => {
-  const { query, searchList, setSearchList } = useContext(movieContext);
-
   const [pageSearch, setPageSearch] = useState(1);
   const [totalPages, setTotalPages] = useState(false);
   const [isMoreBtn, setIsMoreBtn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [searchList, setSearchList] = useState([]);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const query = searchParams.get("query") ?? "";
+
+  const handleChangeQuery = (newQuery) => {
+    setSearchList([]);
+
+    if (!newQuery || newQuery.trim().length === 0) {
+      searchParams.delete("query");
+      setSearchParams({});
+      toast.error("Search query is empty!", { position: "bottom-right" });
+      return;
+    }
+
+    searchParams.set("query", newQuery);
+    setSearchParams(searchParams);
+  };
 
   useEffect(() => {
     if (!query) {
@@ -70,7 +88,7 @@ const MoviesPage = () => {
 
   return (
     <div>
-      <SearchForm />
+      <SearchForm handleChangeQuery={handleChangeQuery} />
       <div className={s.moviesPage}>
         {isLoading && <Loader />}
         <MovieList moviesList={searchList} />

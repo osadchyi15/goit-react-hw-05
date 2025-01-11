@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { fetchDetailsMovie } from "../../services/apiTMDB";
 import s from "./MovieDetailsPage.module.css";
 import { Rating } from "react-simple-star-rating";
@@ -6,7 +6,13 @@ import ToTopButton from "../../components/ToTopButton/ToTopButton";
 import { IoIosArrowBack } from "react-icons/io";
 import Loader from "../../components/Loader/Loader";
 import filmLogo from "../../img/film.svg";
-import { NavLink, Outlet, useParams } from "react-router-dom";
+import {
+  Link,
+  NavLink,
+  Outlet,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 import clsx from "clsx";
 
 const buildLinkClass = ({ isActive }) => {
@@ -15,10 +21,11 @@ const buildLinkClass = ({ isActive }) => {
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
-
   const [isLoading, setIsLoading] = useState(false);
   const [details, setDetails] = useState([]);
   const [windowScroll, setWindowScroll] = useState(false);
+  const location = useLocation();
+  const goBackRef = useRef(location.state ?? "/mvies");
 
   useEffect(() => {
     if (!movieId) return;
@@ -66,12 +73,12 @@ const MovieDetailsPage = () => {
       >
         {/* button BACK HOME */}
         <div className={s.detailsBackBtn}>
-          <div className={s.backBtn}>
+          <Link to={goBackRef.current} className={s.backBtn}>
             <div className={s.backBtnArrow}>
               <IoIosArrowBack />
             </div>
             <p className={s.backBtnText}>Back Home</p>
-          </div>
+          </Link>
         </div>
 
         {/* Text information  about movie*/}
@@ -124,25 +131,25 @@ const MovieDetailsPage = () => {
             </div>
 
             {/* Links */}
-            <div className={s.detailsLinks}>
+            <ul className={s.detailsLinks}>
               {details.homepage && (
-                <div className={s.detailsInfoItem}>
+                <li className={s.detailsInfoItem}>
                   <a className={s.link} href={details.homepage} target="_blank">
                     Homepage
                   </a>
-                </div>
+                </li>
               )}
-              <div className={s.detailsInfoItem}>
+              <li className={s.detailsInfoItem}>
                 <NavLink to="reviews" className={buildLinkClass}>
                   Reviews
                 </NavLink>
-              </div>
-              <div className={s.detailsInfoItem}>
+              </li>
+              <li className={s.detailsInfoItem}>
                 <NavLink to="cast" className={buildLinkClass}>
                   Cast
                 </NavLink>
-              </div>
-            </div>
+              </li>
+            </ul>
           </div>
         </div>
 

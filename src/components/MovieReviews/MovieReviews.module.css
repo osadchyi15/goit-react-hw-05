@@ -2,6 +2,7 @@
   background: radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8));
   box-shadow: 0 6px 10px rgb(0, 0, 0);
   border-radius: 20px;
+  margin-top: 20px;
 }
 
 .reviewsList {

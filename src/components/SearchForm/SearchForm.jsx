@@ -1,31 +1,26 @@
-import { useContext } from "react";
 import s from "./SearchForm.module.css";
-import { movieContext } from "../../context/MovieProvider/MovieProvider";
+import { Field, Form, Formik } from "formik";
 
-const SearchForm = () => {
-  const { setQuery, setSearchList } = useContext(movieContext);
+const SearchForm = ({ handleChangeQuery }) => {
+  const onSubmit = (values, actions) => {
+    handleChangeQuery(values.query);
+    actions.resetForm();
+  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setQuery(e.target.elements.search.value);
-    setSearchList([]);
-    e.target.reset();
+  const initialValues = {
+    query: "",
   };
 
   return (
     <div className={s.formWrapper}>
-      <form className={s.form} onSubmit={handleSubmit}>
-        <input
-          className={s.searchInput}
-          placeholder="What movie are you looking?"
-          type="text"
-          name="search"
-          autoFocus
-        />
-        <button className={s.searchBtn} type="submit">
-          Search
-        </button>
-      </form>
+      <Formik initialValues={initialValues} onSubmit={onSubmit}>
+        <Form className={s.form}>
+          <Field className={s.searchInput} name="query" />
+          <button className={s.searchBtn} type="submit">
+            Search
+          </button>
+        </Form>
+      </Formik>
     </div>
   );
 };

@@ -1,20 +1,17 @@
 import s from "./MovieList.module.css";
 import logoFilm from "../../img/film.svg";
 import { Rating } from "react-simple-star-rating";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const MovieList = ({ moviesList }) => {
+  const location = useLocation();
+
   return (
     <div>
       <ul className={s.movieList}>
         {moviesList.map((movie, index) => {
           return (
-            <li
-              className={s.movieItem}
-              key={movie.id + index}
-              // onClick={handleMovieClick}
-              // data-movieid={movie.id}
-            >
+            <li className={s.movieItem} key={movie.id + index}>
               <div
                 className={s.movie}
                 style={{
@@ -51,14 +48,12 @@ const MovieList = ({ moviesList }) => {
                   </div>
                 </div>
                 <div className={s.bottomInfo}>
-                  <Link to={`/movies/${movie.id}`} className={s.buildLinkClass}>
-                    <p
-                      className={s.movieInfoBtn}
-                      // onClick={handleMovieClick}
-                      // data-movieid={movie.id}
-                    >
-                      More info
-                    </p>
+                  <Link
+                    to={`/movies/${movie.id}`}
+                    className={s.buildLinkClass}
+                    state={location}
+                  >
+                    <p className={s.movieInfoBtn}>More info</p>
                   </Link>
                 </div>
               </div>

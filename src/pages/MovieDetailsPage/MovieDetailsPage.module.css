@@ -17,6 +17,8 @@
   padding: 10%;
   margin-bottom: 30px;
   margin-top: 30px;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .detailsBackBtn {
@@ -53,6 +55,9 @@
   font-size: 18px;
   border-radius: 6px;
   text-align: center;
+  background: transparent;
+  outline: none;
+  color: inherit;
   transition: 500ms;
 }
 
@@ -63,8 +68,16 @@
   align-items: center;
 }
 
-.backBtn:hover {
+.backBtn:hover,
+.backBtn:focus {
   text-decoration: underline;
+  border: none;
+  color: inherit;
+}
+
+.backBtn:not(focus) {
+  border: none;
+  color: inherit;
 }
 
 .detailsInfoTitle {
