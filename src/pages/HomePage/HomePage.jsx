@@ -21,9 +21,8 @@ const HomePage = () => {
     setIsError(false);
 
     const fetchTrending = async () => {
+      setIsLoading(true);
       try {
-        setIsLoading(true);
-
         const { results, total_pages } = await fetchTrendingToday(pageTrends);
 
         setTotalPages(total_pages);
