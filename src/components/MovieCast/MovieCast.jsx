@@ -18,9 +18,8 @@ const MovieCast = () => {
     setIsError(false);
 
     const fetchCast = async () => {
+      setIsLoading(true);
       try {
-        setIsLoading(true);
-
         const { cast } = await fetchCastMovie(movieId);
 
         setCastList(cast);
