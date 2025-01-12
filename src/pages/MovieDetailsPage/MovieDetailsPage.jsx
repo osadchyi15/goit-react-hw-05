@@ -47,19 +47,7 @@ const MovieDetailsPage = () => {
     fetchDetails();
   }, [movieId]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      window.scrollY > 100 ? setWindowScroll(true) : setWindowScroll(false);
-    };
-    window.addEventListener("scroll", handleScroll);
-  }, []);
-
   if (!movieId) return <p>No movie selected</p>;
-
-  const onClickTopButton = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    setWindowScroll(false);
-  };
 
   return isLoading ? (
     <Loader />

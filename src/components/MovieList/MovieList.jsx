@@ -2,9 +2,25 @@ import s from "./MovieList.module.css";
 import logoFilm from "../../img/film.svg";
 import { Rating } from "react-simple-star-rating";
 import { Link, useLocation } from "react-router-dom";
+import ToTopButton from "../ToTopButton/ToTopButton";
+import { useEffect, useState } from "react";
 
 const MovieList = ({ moviesList }) => {
   const location = useLocation();
+
+  const [windowScroll, setWindowScroll] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      window.scrollY > 100 ? setWindowScroll(true) : setWindowScroll(false);
+    };
+    window.addEventListener("scroll", handleScroll);
+  }, []);
+
+  const onClickTopButton = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setWindowScroll(false);
+  };
 
   return (
     <div>
@@ -60,6 +76,7 @@ const MovieList = ({ moviesList }) => {
             </li>
           );
         })}
+        {windowScroll && <ToTopButton onClickTopButton={onClickTopButton} />}
       </ul>
     </div>
   );

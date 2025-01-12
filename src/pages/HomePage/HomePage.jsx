@@ -58,18 +58,6 @@ const HomePage = () => {
     setPageTrends((prev) => prev + 1);
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      window.scrollY > 100 ? setWindowScroll(true) : setWindowScroll(false);
-    };
-    window.addEventListener("scroll", handleScroll);
-  }, []);
-
-  const onClickTopButton = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    setWindowScroll(false);
-  };
-
   return (
     <div>
       <div className={s.homePage}>
