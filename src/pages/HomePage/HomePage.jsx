@@ -5,7 +5,6 @@ import Loader from "../../components/Loader/Loader";
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
-import ToTopButton from "../../components/ToTopButton/ToTopButton";
 import s from "./HomePage.module.css";
 
 const HomePage = () => {
@@ -15,7 +14,6 @@ const HomePage = () => {
   const [isMoreBtn, setIsMoreBtn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [windowScroll, setWindowScroll] = useState(false);
 
   useEffect(() => {
     setIsError(false);

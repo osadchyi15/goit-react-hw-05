@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { fetchDetailsMovie } from "../../services/apiTMDB";
 import s from "./MovieDetailsPage.module.css";
 import { Rating } from "react-simple-star-rating";
-import ToTopButton from "../../components/ToTopButton/ToTopButton";
 import { IoIosArrowBack } from "react-icons/io";
 import Loader from "../../components/Loader/Loader";
 import filmLogo from "../../img/film.svg";
@@ -23,7 +22,6 @@ const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [details, setDetails] = useState([]);
-  const [windowScroll, setWindowScroll] = useState(false);
   const location = useLocation();
   const goBackRef = useRef(location.state ?? "/movies");
 
