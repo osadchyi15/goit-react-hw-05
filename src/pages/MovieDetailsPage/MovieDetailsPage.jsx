@@ -25,7 +25,7 @@ const MovieDetailsPage = () => {
   const [details, setDetails] = useState([]);
   const [windowScroll, setWindowScroll] = useState(false);
   const location = useLocation();
-  const goBackRef = useRef(location.state ?? "/mvies");
+  const goBackRef = useRef(location.state ?? "/movies");
 
   useEffect(() => {
     if (!movieId) return;
@@ -160,7 +160,6 @@ const MovieDetailsPage = () => {
       <Outlet />
 
       {isLoading && <Loader />}
-      {windowScroll && <ToTopButton onClickTopButton={onClickTopButton} />}
     </div>
   );
 };

@@ -67,7 +67,6 @@ const HomePage = () => {
           <LoadMoreBtn isLoading={isLoading} onClickMoreBtn={onClickMoreBtn} />
         )}
         {isError && <ErrorMessage />}
-        {windowScroll && <ToTopButton onClickTopButton={onClickTopButton} />}
       </div>
     </div>
   );
